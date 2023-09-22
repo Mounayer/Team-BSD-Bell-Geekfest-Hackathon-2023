@@ -7,9 +7,23 @@ module.exports = async function (req, res) {
   try {
     let keyid = await getKMSKey(username);
 
-    let array = ["Hello World", "Hey bro", "Hey Dude"];
+    let object_name = "blyat";
 
-    await writeData("notes", keyid, JSON.stringify(array));
+    if (req.dataType == "text") {
+      object_name = "text";
+      keyid += "notes";
+    } else if (req.dataType == "image") {
+      object_name = "image";
+      keyid += "images";
+    } else if (req.dataType == "json") {
+      object_name = "json";
+      keyid += "json";
+    } else {
+      object_name = "file";
+      keyid += "files";
+    }
+
+    await writeData(object_name, keyid, req.body);
 
     console.log(`Username: ${username}, KeyID: ${keyid}`);
 
