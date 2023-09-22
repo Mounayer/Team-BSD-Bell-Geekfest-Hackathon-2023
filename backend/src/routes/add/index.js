@@ -3,23 +3,20 @@ const { writeData } = require("../../db/index");
 
 module.exports = async function (req, res) {
   let username = req.query.username;
+  let file_name = req.query.filename;
 
   try {
     let keyid = await getKMSKey(username);
 
-    let object_name = "blyat";
+    let object_name = file_name;
 
     if (req.dataType == "text") {
-      object_name = "text";
       keyid += "notes";
     } else if (req.dataType == "image") {
-      object_name = "image";
       keyid += "images";
     } else if (req.dataType == "json") {
-      object_name = "json";
       keyid += "json";
     } else {
-      object_name = "file";
       keyid += "files";
     }
 
