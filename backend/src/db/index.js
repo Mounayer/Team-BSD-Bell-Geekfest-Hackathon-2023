@@ -10,12 +10,12 @@ const {
  * https://github.com/awsdocs/aws-sdk-for-javascript-v3/blob/main/doc_source/s3-example-creating-buckets.md#upload-an-existing-object-to-an-amazon-s3-bucket
  * @returns {Promise}
  */
-async function writeData(username, keyid, data) {
+async function writeData(object_name, keyid, data) {
   // S3 Put Params
   const params = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
     // Our key will be a mix of the ownerID and fragment id, written as a path
-    Key: `${username}/${keyid}`,
+    Key: `${keyid}/${object_name}`,
     Body: data,
   };
 
@@ -57,12 +57,12 @@ const streamToBuffer = (stream) =>
  * Reads a fragment's data from S3
  * @returns {Promise<Buffer>}
  */
-async function readData(username, keyid) {
+async function readData(object_name, keyid) {
   // S3 Put Parameters
   const params = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
     // Our key will be a mix of the ownerID and fragment id, written as a path
-    Key: `${username}/${keyid}`,
+    Key: `${keyid}/${object_name}`,
   };
 
   // Create a GET Object command to send to S3
@@ -84,11 +84,11 @@ async function readData(username, keyid) {
 }
 
 /*** Delete a fragment's metadata and data from S3 and DynamoDB. Returns a Promise*/
-async function deleteData(username, keyid) {
+async function deleteData(object_name, keyid) {
   // S3 Delete Params
   const params = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
-    Key: `${username}/${keyid}`,
+    Key: `${keyid}/${object_name}`,
   };
 
   const command = new DeleteObjectCommand(params);

@@ -7,9 +7,13 @@ module.exports = async function (req, res) {
   try {
     let keyid = await getKMSKey(username);
 
-    await writeData(username, keyid);
+    let array = ["Hello World", "Hey bro", "Hey Dude"];
 
-    //res.status(200);
+    await writeData("notes", keyid, JSON.stringify(array));
+
+    console.log(`Username: ${username}, KeyID: ${keyid}`);
+
+    res.status(200).send("Added Data");
   } catch (err) {
     res.status(400).send("Unable to process request");
   }

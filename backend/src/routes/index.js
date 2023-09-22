@@ -12,6 +12,7 @@ router.get("/", authenticate(), (req, res) => {
   res.status(200).send(`Health is good!`);
 });
 
-router.get("/add", authenticate(), add);
+//router.post("/add", authenticate(), add);
+router.post("/add", add);
 
 module.exports.router = router;
