@@ -10,6 +10,7 @@
   "author": "Team-BSD",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.418.0",
     "aws-amplify": "^5.3.11",
     "aws-jwt-verify": "^4.0.0",
     "aws-sdk": "^2.1463.0",
