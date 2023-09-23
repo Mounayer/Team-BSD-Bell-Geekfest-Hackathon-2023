@@ -11,15 +11,23 @@ const Media = ({ media }) => {
   const fileURL = user
     ? `http://${process.env.NEXT_PUBLIC_API_URL}/getone?username=${user.username}&filename=${media.file_name}&dataType=${media.data_type}`
     : defaultImage;
-  console.log(fileURL);
 
   useEffect(() => {
-    fetch(fileURL)
-      .then((res) => {
-        return res.blob();
-      })
-      .then((blob) => setBlob(blob));
-  }, []);
+    if (fileURL != defaultImage) {
+      fetch(fileURL)
+        .then((res) => {
+          return res.blob();
+        })
+        .then((blob) => {
+          const imgURL = URL.createObjectURL(blob);
+          console.log(imgURL);
+          setBlob(imgURL)
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
+    }
+  }, [fileURL]);
 
   return (
     <div className=" flex mx-5 flex-col border-black border w-[170px] h-[250px]">
