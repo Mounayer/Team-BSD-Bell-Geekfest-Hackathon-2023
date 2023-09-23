@@ -13,5 +13,6 @@ router.get("/", authenticate(), (req, res) => {
 });
 
 router.get("/add", authenticate(), add);
+router.use('/payment', require('./payment'));
 
 module.exports.router = router;
