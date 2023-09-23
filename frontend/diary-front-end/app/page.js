@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <section id="user" className=" py-10">
-        <h1 className="username text-center text-4xl font-bold text-blue">
+        <h1 className="username text-center text-4xl font-bold text-blue-custom">
           Not Logged In
         </h1>
       </section>
