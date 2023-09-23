@@ -62,26 +62,11 @@ export default function Form() {
   const handleFileChange = (event) => {
     if (event.target.files.length === 0) return;
 
-    const fileExtension = event.target.files[0].name.split(".").pop();
-
-    switch (fileExtension) {
-      case "jpeg":
-      case "jpg":
-        setSelectedOption("image/jpeg");
-        break;
-      case "png":
-        setSelectedOption("image/png");
-        break;
-      case "gif":
-        setSelectedOption("image/gif");
-        break;
-      case "webp":
-        setSelectedOption("image/webp");
-        break;
-      default:
-        setSelectedOption("application/octet-stream");
+    if (isImage) {
+      setSelectedOption("image");
     }
   };
+
   // Callback function to handleSubmit
   async function whatToDo(data, event) {
     event.preventDefault();
