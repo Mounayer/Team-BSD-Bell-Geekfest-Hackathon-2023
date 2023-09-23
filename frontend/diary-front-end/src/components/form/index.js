@@ -33,6 +33,7 @@ export default function Form() {
   }
 
   const [selectedOption, setSelectedOption] = useState("text/plain");
+  const [selectedContentType, setSelectedContentType] = useState("");
 
   //   const handleChange = (event) => {
   //     setSelectedOption(event.target.value);
@@ -44,8 +45,10 @@ export default function Form() {
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
 
-    // If the selected option is "image", treat it as an image
-    setIsImage(event.target.value === "image");
+    const imageTypes = ["image/jpeg", "image/gif", "image/png", "image/webp"];
+
+    // Check if it's one of the image MIME types
+    setIsImage(imageTypes.includes(event.target.value));
 
     // Set isText only if it's a text or application/json
     setIsText(
@@ -62,17 +65,32 @@ export default function Form() {
   const handleFileChange = (event) => {
     if (event.target.files.length === 0) return;
 
-    if (isImage) {
-      setSelectedOption("image");
+    const fileExtension = event.target.files[0].name.split(".").pop();
+
+    switch (fileExtension) {
+      case "jpeg":
+      case "jpg":
+        setSelectedContentType("image/jpeg");
+        break;
+      case "png":
+        setSelectedContentType("image/png");
+        break;
+      case "gif":
+        setSelectedContentType("image/gif");
+        break;
+      case "webp":
+        setSelectedContentType("image/webp");
+        break;
+      default:
+        setSelectedContentType("application/octet-stream");
     }
   };
-
   // Callback function to handleSubmit
   async function whatToDo(data, event) {
     event.preventDefault();
 
     const to_send =
-      selectedOption == "application/json"
+      selectedContentType == "application/json"
         ? JSON.stringify({ message: data["payload"] })
         : data["payload"];
 
@@ -98,7 +116,7 @@ export default function Form() {
       reader.onload = function (e) {
         const arrayBuffer = e.target.result;
         const fileData = new Blob([arrayBuffer]);
-        if (selectedOption.startsWith("text")) {
+        if (selectedContentType.startsWith("text")) {
           apiUrl += ".txt";
         } else {
           apiUrl += fileExtension;
@@ -108,7 +126,7 @@ export default function Form() {
           method: "POST",
           body: fileData,
           headers: {
-            "Content-Type": selectedOption,
+            "Content-Type": selectedContentType,
             Authorization: `Bearer ${idToken}`,
           },
         })
@@ -156,7 +174,8 @@ export default function Form() {
         <select value={selectedOption} onChange={handleChange}>
           <option value="text/plain">Text</option>
           <option value="application/json">application/json</option>
-          <option value="image">Image</option>
+          <option value="image/jpeg">Image</option>
+
           <option value="application/octet-stream">Any File</option>
         </select>
       </div>
