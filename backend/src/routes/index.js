@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const encrypt = require("../middlewares/encrypt");
 const { authenticate } = require("../authentication/index");
 const add = require("./add/index");
+const handleData = require("../middlewares/handledata");
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ router.get("/", authenticate(), (req, res) => {
   res.status(200).send(`Health is good!`);
 });
 
-router.get("/add", authenticate(), add);
-router.use('/payment', require('./payment'));
+//router.post("/add", authenticate(), add);
+router.post("/add", handleData, add);
 
 module.exports.router = router;

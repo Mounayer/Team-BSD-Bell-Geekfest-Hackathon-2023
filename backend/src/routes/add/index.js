@@ -7,9 +7,27 @@ module.exports = async function (req, res) {
   try {
     let keyid = await getKMSKey(username);
 
-    await writeData(username, keyid);
+    let object_name = "blyat";
 
-    //res.status(200);
+    if (req.dataType == "text") {
+      object_name = "text";
+      keyid += "notes";
+    } else if (req.dataType == "image") {
+      object_name = "image";
+      keyid += "images";
+    } else if (req.dataType == "json") {
+      object_name = "json";
+      keyid += "json";
+    } else {
+      object_name = "file";
+      keyid += "files";
+    }
+
+    await writeData(object_name, keyid, req.body);
+
+    console.log(`Username: ${username}, KeyID: ${keyid}`);
+
+    res.status(200).send("Added Data");
   } catch (err) {
     res.status(400).send("Unable to process request");
   }
