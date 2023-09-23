@@ -1,3 +1,47 @@
+// const multer = require("multer");
+// const bodyParser = require("body-parser");
+// const upload = multer({ storage: multer.memoryStorage() });
+
+// function handleData(req, res, next) {
+//   const contentType = req.headers["content-type"];
+
+//   if (contentType.startsWith("text/")) {
+//     req.dataType = "text";
+//     bodyParser.text()(req, res, next);
+//   } else if (contentType === "application/json") {
+//     req.dataType = "json";
+//     bodyParser.json()(req, res, next);
+//   } else if (contentType.startsWith("image/")) {
+//     req.dataType = "image";
+//     let data = [];
+//     req.on("data", (chunk) => {
+//       data.push(chunk);
+//     });
+//     req.on("end", () => {
+//       if (data.length > 0) {
+//         req.body = Buffer.concat(data);
+//       }
+//       next();
+//     });
+//   } else if (contentType.startsWith("multipart/form-data")) {
+//     req.dataType = "file";
+//     upload.single("file")(req, res, (err) => {
+//       if (err) {
+//         return res.status(400).send("Error processing file upload.");
+//       }
+//       if (req.file) {
+//         req.body = req.file.buffer;
+//       }
+//       next();
+//     });
+//   } else {
+//     console.log("Unsupported content");
+//     return res.status(400).send("Unsupported content type");
+//   }
+// }
+
+// module.exports = handleData;
+
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const upload = multer({ storage: multer.memoryStorage() });
@@ -7,47 +51,43 @@ function handleData(req, res, next) {
 
   if (contentType.startsWith("text/")) {
     req.dataType = "text";
-    bodyParser.text()(req, res, next); // Process the incoming text
+    bodyParser.text()(req, res, next);
   } else if (contentType === "application/json") {
     req.dataType = "json";
-    try {
-      req.body = JSON.stringify(req.body);
-      next(); // Continue to the next middleware or route
-    } catch (err) {
-      return res.status(400).send("Error processing JSON data.");
-    }
+    bodyParser.json()(req, res, next);
   } else if (
-    contentType.startsWith("multipart/form-data") ||
-    contentType.startsWith("image/")
+    contentType.startsWith("image/") ||
+    contentType === "application/octet-stream"
   ) {
     if (contentType.startsWith("image/")) {
       req.dataType = "image";
-      // Use multer to handle file uploads and images
-      upload.single("image")(req, res, (err) => {
-        if (err) {
-          return res.status(400).send("Error processing file upload.");
-        }
-        // For file or image, transform the body to be the file buffer
-        if (req.file) {
-          req.body = req.file.buffer;
-        }
-        next(); // Continue to the next middleware or route
-      });
     } else {
       req.dataType = "file";
-      // Use multer to handle file uploads and images
-      upload.single("file")(req, res, (err) => {
-        if (err) {
-          return res.status(400).send("Error processing file upload.");
-        }
-        // For file or image, transform the body to be the file buffer
-        if (req.file) {
-          req.body = req.file.buffer;
-        }
-        next(); // Continue to the next middleware or route
-      });
     }
+
+    let data = [];
+    req.on("data", (chunk) => {
+      data.push(chunk);
+    });
+    req.on("end", () => {
+      if (data.length > 0) {
+        req.body = Buffer.concat(data);
+      }
+      next();
+    });
+  } else if (contentType.startsWith("multipart/form-data")) {
+    req.dataType = "multipart";
+    upload.single("file")(req, res, (err) => {
+      if (err) {
+        return res.status(400).send("Error processing file upload.");
+      }
+      if (req.file) {
+        req.body = req.file.buffer;
+      }
+      next();
+    });
   } else {
+    console.log("Unsupported content");
     return res.status(400).send("Unsupported content type");
   }
 }

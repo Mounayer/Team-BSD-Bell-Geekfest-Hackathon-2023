@@ -10,13 +10,14 @@ const {
  * https://github.com/awsdocs/aws-sdk-for-javascript-v3/blob/main/doc_source/s3-example-creating-buckets.md#upload-an-existing-object-to-an-amazon-s3-bucket
  * @returns {Promise}
  */
-async function writeData(object_name, keyid, data) {
+async function writeData(object_name, keyid, data, req) {
   // S3 Put Params
   const params = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
     // Our key will be a mix of the ownerID and fragment id, written as a path
     Key: `${keyid}/${object_name}`,
     Body: data,
+    ContentType: req.headers["content-type"],
   };
 
   // Create a PUT Object command to send to S3
