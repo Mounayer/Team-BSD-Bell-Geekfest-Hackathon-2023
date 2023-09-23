@@ -33,6 +33,7 @@ export default function Form() {
   }
 
   const [selectedOption, setSelectedOption] = useState("text/plain");
+  const [selectedContentType, setSelectedContentType] = useState("");
 
   //   const handleChange = (event) => {
   //     setSelectedOption(event.target.value);
@@ -69,19 +70,19 @@ export default function Form() {
     switch (fileExtension) {
       case "jpeg":
       case "jpg":
-        setSelectedOption("image/jpeg");
+        setSelectedContentType("image/jpeg");
         break;
       case "png":
-        setSelectedOption("image/png");
+        setSelectedContentType("image/png");
         break;
       case "gif":
-        setSelectedOption("image/gif");
+        setSelectedContentType("image/gif");
         break;
       case "webp":
-        setSelectedOption("image/webp");
+        setSelectedContentType("image/webp");
         break;
       default:
-        setSelectedOption("application/octet-stream");
+        setSelectedContentType("application/octet-stream");
     }
   };
   // Callback function to handleSubmit
@@ -89,7 +90,7 @@ export default function Form() {
     event.preventDefault();
 
     const to_send =
-      selectedOption == "application/json"
+      selectedContentType == "application/json"
         ? JSON.stringify({ message: data["payload"] })
         : data["payload"];
 
@@ -115,7 +116,7 @@ export default function Form() {
       reader.onload = function (e) {
         const arrayBuffer = e.target.result;
         const fileData = new Blob([arrayBuffer]);
-        if (selectedOption.startsWith("text")) {
+        if (selectedContentType.startsWith("text")) {
           apiUrl += ".txt";
         } else {
           apiUrl += fileExtension;
@@ -125,7 +126,7 @@ export default function Form() {
           method: "POST",
           body: fileData,
           headers: {
-            "Content-Type": selectedOption,
+            "Content-Type": selectedContentType,
             Authorization: `Bearer ${idToken}`,
           },
         })
