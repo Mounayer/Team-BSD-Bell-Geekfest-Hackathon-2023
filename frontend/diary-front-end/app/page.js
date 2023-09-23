@@ -1,6 +1,6 @@
 "use client";
 import { init } from "./../src/app";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { getUser } from "@/src/auth";
 import Media from "./Media";
@@ -44,7 +44,7 @@ export default function Home() {
       <div className=" flex flex-wrap max-w-[1500px] mx-auto">
         {fragments.map((f) => {
           console.log("here");
-          return <Media fragment={f} />;
+          return <Media media={f} />;
         })}
       </div>
     </>
