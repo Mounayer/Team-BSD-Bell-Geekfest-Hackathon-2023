@@ -4,6 +4,8 @@ const encrypt = require("../middlewares/encrypt");
 const { authenticate } = require("../authentication/index");
 const add = require("./add/index");
 const handleData = require("../middlewares/handledata");
+const getOne = require("./getOne/index");
+const getAllMetadata = require("./getAllMetadata/index");
 
 dotenv.config();
 
@@ -15,5 +17,11 @@ router.get("/", authenticate(), (req, res) => {
 
 //router.post("/add", authenticate(), add);
 router.post("/add", handleData, add);
+
+//router.post("/add", authenticate(), add);
+router.get("/getone", getOne);
+
+//router.post("/add", authenticate(), add);
+router.get("/getalluserfiles", getAllMetadata);
 
 module.exports.router = router;

@@ -2,7 +2,7 @@ const { getKMSKey } = require("../../encryption/index");
 const { writeData } = require("../../db/index");
 const {addFile} = require("../../db/mongo");
 const {getFileExtension }  = require("../../helpers/index");
-const {run} = require("../../db/mongo/index");
+// const {run} = require("../../db/mongo/index");
 
 module.exports = async function (req, res) {
   let username = req.query.username;
@@ -32,9 +32,9 @@ module.exports = async function (req, res) {
       await writeData(object_name, keyid, req.body, req);
     }
 
-    await run();
+    // await run();
 
-    //await addFile(username, object_name, getFileExtension(object_name), req.dataType);
+    await addFile(username, object_name, getFileExtension(object_name), req.dataType, req.headers["content-type"]);
 
     console.log(`Username: ${username}, KeyID: ${keyid}`);
 

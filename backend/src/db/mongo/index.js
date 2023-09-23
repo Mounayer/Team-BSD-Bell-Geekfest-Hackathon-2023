@@ -13,7 +13,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-module.exports.run = async function run() {
+async function run() {
   try {
     await client.connect();
     const databaseName = process.env.DATABASE_NAME;
@@ -26,13 +26,10 @@ module.exports.run = async function run() {
   } catch(err) {
     console.log(err);
   }
-  finally {
-    await client.close();
-  }
 }
 
 
-module.exports.addFile = async function(userName, filename, fileextension, datatype)
+module.exports.addFile = async function(userName, filename, fileextension, datatype, contenttype)
 {
     try
     {
@@ -41,7 +38,8 @@ module.exports.addFile = async function(userName, filename, fileextension, datat
             username: userName,
             file_name: filename,
             file_extension:  fileextension,
-            data_type: datatype
+            data_type: datatype,
+            content_type: contenttype
         }
 
         let collection = await run();
@@ -67,7 +65,7 @@ module.exports.getAllFiles = async function(userName)
     {
         let collection = await run();
 
-        let allFiles =  await collection.find({username: userName})
+        let allFiles =  await collection.find({username: userName}).toArray();
 
         return Promise.resolve(allFiles);
     }
