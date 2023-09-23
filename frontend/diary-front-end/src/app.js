@@ -45,7 +45,7 @@ export async function init() {
   userSection.hidden = false;
 
   // Show the user's username
-  userSection.querySelector(".username").innerText = user.username;
+  userSection.querySelector(".username").innerText = `Hello ${user.username}`;
 
   // Disable the Login button
   loginBtn.disabled = true;

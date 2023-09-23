@@ -2,9 +2,9 @@
 import { init } from "./../src/app";
 import { useEffect } from "react";
 import { useState } from "react";
+import { getUser } from "@/src/auth";
 
 export default function Home() {
-  // On second render
   useEffect(() => {
     init();
     // Wait for the DOM to be ready, then start the app
@@ -14,12 +14,14 @@ export default function Home() {
 
   return (
     <>
-      <h1>Hello World</h1>
+      <section id="user" className=" py-10">
+        <h1 className="text-center text-4xl font-bold text-teal-600">
+          Not Logged In
+        </h1>
+      </section>
+
       <button id="login">Log In</button>
       <button id="logout">Log Out</button>
-      <section id="user">
-        <p className="username">Not Logged In</p>
-      </section>
     </>
   );
 }
