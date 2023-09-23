@@ -44,6 +44,7 @@ export default function Form() {
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
+    setSelectedContentType(event.target.value);
 
     const imageTypes = ["image/jpeg", "image/gif", "image/png", "image/webp"];
 
@@ -59,6 +60,7 @@ export default function Form() {
     // Clear the file input if it exists
     if (fileInput.current) {
       fileInput.current.value = "";
+      setSelectedContentType("");
     }
   };
 
@@ -85,14 +87,32 @@ export default function Form() {
         setSelectedContentType("application/octet-stream");
     }
   };
+
+  if (selectedOption === "application/octet-stream" && !selectedContentType) {
+    setSelectedContentType("application/octet-stream");
+  }
   // Callback function to handleSubmit
   async function whatToDo(data, event) {
     event.preventDefault();
 
-    const to_send =
-      selectedContentType == "application/json"
-        ? JSON.stringify({ message: data["payload"] })
-        : data["payload"];
+    // const to_send =
+    //   selectedContentType == "application/json"
+    //     ? JSON.stringify({ message: data["payload"] })
+    //     : data["payload"];
+    let to_send = data["payload"];
+    console.log(`selectedContentType: ${selectedContentType}`);
+    if (selectedContentType === "application/json") {
+      try {
+        console.log(`Logging to_send ${to_send}`);
+        //to_send = JSON.stringify(JSON.parse(data["payload"]));
+        to_send = JSON.stringify({ message: to_send });
+
+        console.log(`Logging to_send after json convert ${to_send}`);
+      } catch (e) {
+        console.error("Invalid JSON input:", e);
+        return; // or handle this error in a user-friendly way
+      }
+    }
 
     let apiUrl = process.env.NEXT_PUBLIC_API_URL || "localhost:8080";
 
