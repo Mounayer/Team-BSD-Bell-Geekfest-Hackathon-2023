@@ -50,12 +50,7 @@ export default function Home() {
               {metadata.map((m) => {
                 console.log(m);
                 return (
-                  <div
-                    onClick={() => {
-                      const fileURL = `http://${process.env.NEXT_PUBLIC_API_URL}/getone?username=${user.username}&filename=${m.file_name}&dataType=${m.data_type}`
-                      window.open(fileURL, '_blank');
-                    }}
-                  >
+                  <div>
                     <Media key={m._id} media={m} />
                   </div>
                 );
