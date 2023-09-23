@@ -22,7 +22,7 @@ module.exports.decrypt = function (text, keyString) {
   let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key), iv);
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
-  return decrypted.toString();
+  return decrypted;
 };
 
 module.exports.getKMSKey = (username) => {

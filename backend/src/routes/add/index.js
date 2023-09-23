@@ -2,7 +2,7 @@ const { getKMSKey } = require("../../encryption/index");
 const { writeData } = require("../../db/index");
 const {addFile} = require("../../db/mongo");
 const {getFileExtension }  = require("../../helpers/index");
-// const {run} = require("../../db/mongo/index");
+const encrypt   = require("../../middlewares/encrypt");
 
 module.exports = async function (req, res) {
   let username = req.query.username;
@@ -12,6 +12,7 @@ module.exports = async function (req, res) {
 
   try {
     let keyid = await getKMSKey(username);
+    let original_keyid = keyid;
 
     let object_name = file_name;
 
@@ -26,10 +27,29 @@ module.exports = async function (req, res) {
       keyid += "files";
     }
 
+    // if (req.file && req.file.buffer) {
+
+    //   await writeData(object_name, keyid, req.file.buffer, req);
+    // } else {
+    //   await writeData(object_name, keyid, req.body, req);
+    // }
+
+    // Testing for encryption
+    // Steps:
+    //  - stringify
+    //  - encrypt
+    //  - stringify
+
+
+    // Steps for decryption
+    // - parseJSON
+    // - decrypt
+    // - parseJSON
     if (req.file && req.file.buffer) {
-      await writeData(object_name, keyid, req.file.buffer, req);
+
+      await writeData(object_name, keyid, JSON.stringify(encrypt(req.file.buffer, original_keyid)), req);
     } else {
-      await writeData(object_name, keyid, req.body, req);
+      await writeData(object_name, keyid, JSON.stringify(encrypt(req.body, original_keyid)), req);
     }
 
     // await run();

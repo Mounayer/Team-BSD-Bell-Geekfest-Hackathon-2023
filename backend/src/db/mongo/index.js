@@ -48,7 +48,7 @@ module.exports.addFile = async function(userName, filename, fileextension, datat
 
         const options = { upsert: true };
 
-        await collection.replaceOne({ username: userName }, doc, options);
+        await collection.replaceOne({ username: userName, file_name: filename }, doc, options);
 
         return Promise.resolve();
     }
