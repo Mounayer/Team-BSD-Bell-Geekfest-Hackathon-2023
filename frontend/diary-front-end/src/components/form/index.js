@@ -44,8 +44,10 @@ export default function Form() {
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
 
-    // If the selected option is "image", treat it as an image
-    setIsImage(event.target.value === "image");
+    const imageTypes = ["image/jpeg", "image/gif", "image/png", "image/webp"];
+
+    // Check if it's one of the image MIME types
+    setIsImage(imageTypes.includes(event.target.value));
 
     // Set isText only if it's a text or application/json
     setIsText(
@@ -62,11 +64,26 @@ export default function Form() {
   const handleFileChange = (event) => {
     if (event.target.files.length === 0) return;
 
-    if (isImage) {
-      setSelectedOption("image");
+    const fileExtension = event.target.files[0].name.split(".").pop();
+
+    switch (fileExtension) {
+      case "jpeg":
+      case "jpg":
+        setSelectedOption("image/jpeg");
+        break;
+      case "png":
+        setSelectedOption("image/png");
+        break;
+      case "gif":
+        setSelectedOption("image/gif");
+        break;
+      case "webp":
+        setSelectedOption("image/webp");
+        break;
+      default:
+        setSelectedOption("application/octet-stream");
     }
   };
-
   // Callback function to handleSubmit
   async function whatToDo(data, event) {
     event.preventDefault();
@@ -156,7 +173,8 @@ export default function Form() {
         <select value={selectedOption} onChange={handleChange}>
           <option value="text/plain">Text</option>
           <option value="application/json">application/json</option>
-          <option value="image">Image</option>
+          <option value="image/jpeg">Image</option>
+
           <option value="application/octet-stream">Any File</option>
         </select>
       </div>
