@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/src/components/header";
 import Footer from "@/src/components/footer";
+import AuthGuard from "./AuthGuard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col h-screen`}>
-        <Header className="h-1/10" />
-        <div className="flex-1 overflow-y-auto p-4">{children}</div>
-        <Footer className="h-1/10" />
+        <AuthGuard>
+          <Header className="h-1/10" />
+          <div className="flex-1 overflow-y-auto p-4">{children}</div>
+          <Footer className="h-1/10" />
+        </AuthGuard>
       </body>
     </html>
   );

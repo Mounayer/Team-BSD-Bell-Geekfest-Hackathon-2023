@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Media from "./Media";
 import SearchBar from "@/src/components/SearchBar";
+import { getUser } from "@/src/auth";
+import ExclamationIcon from "@/src/components/icons/ExclamationIcon";
 
 export default function Home() {
   const initialData = [
@@ -21,41 +23,51 @@ export default function Home() {
     },
   ];
   const [media, setMedia] = useState(initialData);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     init();
     // Wait for the DOM to be ready, then start the app
-
     addEventListener("DOMContentLoaded", init);
+
+    getUser().then((user) => setUser(user));
   }, []);
 
   return (
     <>
-      {/*
-      <section id="user" className=" py-10">
-        <h1 className="username text-center text-4xl font-bold text-blue-custom">
-          Not Logged In
-        </h1>
-      </section>
-
-      <button id="login">Log In</button>
-      <button id="logout">Log Out</button>
-  */}
-      <div className="max-w-[1500px] mx-auto">
+      <button id="login" className=" py-2 px-3 border border-black">
+        Log in
+      </button>
+      {user && (
         <div>
-          <SearchBar
-            collectionState={media}
-            setCurrentCollection={setMedia}
-            keys={["name"]}
-            placeholder="Start searching for your file here!"
-          />
+          <div className=" w-full py-6 px-4">
+            <button id="logout">Log out</button>
+          </div>
+          <div className="max-w-[1500px] mx-auto">
+            <div>
+              <SearchBar
+                collectionState={media}
+                setCurrentCollection={setMedia}
+                keys={["name"]}
+                placeholder="Start searching for your file here!"
+              />
+            </div>
+            <div className=" flex flex-wrap">
+              {media.map((m) => {
+                return <Media media={m} />;
+              })}
+            </div>
+          </div>
         </div>
-        <div className=" flex flex-wrap">
-          {media.map((m) => {
-            return <Media media={m} />;
-          })}
+      )}
+      {!user && (
+        <div className=" flex flex-col pt-[150px] items-center justify-center">
+          <span className=" text-yellow-400 font-bold text-[50px]">
+            <ExclamationIcon />
+          </span>
+          <span className=" py-4 text-lg">You are not logged in!</span>
         </div>
-      </div>
+      )}
     </>
   );
 }
