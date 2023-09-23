@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRef } from "react";
 
-
-
 export default function Form() {
   // retrieves the following properties and member functions from useForm
   const { register, handleSubmit } = useForm({
@@ -55,7 +53,7 @@ export default function Form() {
     // Set isText only if it's a text or application/json
     setIsText(
       event.target.value.startsWith("text/") ||
-      event.target.value === "application/json"
+        event.target.value === "application/json"
     );
 
     // Clear the file input if it exists
@@ -168,13 +166,10 @@ export default function Form() {
     }
   }
 
-
-
-
   return (
     <>
       <div className="centered w-full h-screen bg-blue-800 text-white">
-        <h1 className="text-2xl text-center">Secure Your Information (feels a bit off centered maybe becuz of scroll bar)</h1>
+        <h1 className="text-2xl text-center">Secure Your Information (file not accepting pdf says unsuported) (dont know how to send json)(feels a bit off centered maybe becuz of scroll bar)</h1>
 
         <div className="px-5">
           <label for="countries" class="block mb-2 text-sm font-medium text-white">Information Type</label>
