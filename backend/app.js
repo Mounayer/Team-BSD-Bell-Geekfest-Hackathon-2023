@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
+app.use(helmet());
 const dotenv = require("dotenv");
 dotenv.config();
 const passport = require("passport");
