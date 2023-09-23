@@ -7,7 +7,6 @@ module.exports = async function (req, res) {
   let username = req.query.username;
   let file_name = req.query.filename;
   let dataType = req.query.dataType;
-  let contentType = req.query.contentType;
 
 
 

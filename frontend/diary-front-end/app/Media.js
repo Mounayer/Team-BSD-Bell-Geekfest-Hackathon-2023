@@ -10,17 +10,17 @@ const Media = ({media}) => {
           {getMediaThumbnail()}
         </div>
         <div className=' p-5 bg-slate-200 text-center text-sm'>
-            <h2>{media.name}</h2>
+            <h2>{media.file_name}</h2>
         </div>
     </div>
   )
 
   function getMediaThumbnail() {
-    if(media.type == 'text') {
+    if(media.data_type == 'text') {
       console.log('THIS');
       return <Text />
     }
-    if(media.type == "image") {
+    if(media.data_type == "image") {
       console.log('FOUND IMAGE');
       return <Picture />
     }
