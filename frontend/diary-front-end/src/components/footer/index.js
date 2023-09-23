@@ -1,19 +1,19 @@
 function Footer() {
   return (
-    <header className="bg-teal-800 p-4">
+    <header className="bg-blue p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white font-bold text-xl">LockIt</div>
         <nav className="space-x-4">
-          <a href="#" className="text-white hover:text-teal-400">
+          <a href="#" className="text-white hover:text-teal-200">
             Help
           </a>
-          <a href="#" className="text-white hover:text-teal-400">
+          <a href="#" className="text-white hover:text-teal-200">
             About Us
           </a>
-          <a href="#" className="text-white hover:text-teal-400">
+          <a href="#" className="text-white hover:text-teal-200">
             FAQ
           </a>
-          <a href="#" className="text-white hover:text-teal-400">
+          <a href="#" className="text-white hover:text-teal-200">
             Policies
           </a>
         </nav>
