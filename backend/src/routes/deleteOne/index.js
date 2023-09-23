@@ -1,6 +1,6 @@
 const { getKMSKey } = require("../../encryption/index");
-const { readData } = require("../../db/index");
-const {getFileExtension }  = require("../../helpers/index");
+const { deleteData } = require("../../db/index");
+const { deleteFile } = require("../../db/mongo/index");
 // const {run} = require("../../db/mongo/index");
 
 module.exports = async function (req, res) {
@@ -35,11 +35,15 @@ module.exports = async function (req, res) {
     res.setHeader('Content-Disposition', 'attachment; filename=' + file_name);
 
 
-    res.status(200).send(await readData(file_name, keyid));
+    await deleteData(file_name, keyid);
 
     //return await readData(file_name, keyid);
 
+    await deleteFile(username, file_name);
+
     // await run();
+
+    res.status(200).send(`Successfully deleted ${username}'s data`);
 
   } catch (err) {
     console.log(err);
