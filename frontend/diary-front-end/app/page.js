@@ -2,8 +2,8 @@
 import { init } from "./../src/app";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getUser } from "@/src/auth";
 import Media from "./Media";
+import SearchBar from "@/src/components/SearchBar";
 
 export default function Home() {
   const initialData = [
@@ -20,7 +20,7 @@ export default function Home() {
       type: "video",
     },
   ];
-  const [fragments, setFragments] = useState(initialData);
+  const [media, setMedia] = useState(initialData);
 
   useEffect(() => {
     init();
@@ -41,11 +41,20 @@ export default function Home() {
       <button id="login">Log In</button>
       <button id="logout">Log Out</button>
   */}
-      <div className=" flex flex-wrap max-w-[1500px] mx-auto">
-        {fragments.map((f) => {
-          console.log("here");
-          return <Media media={f} />;
-        })}
+      <div className="max-w-[1500px] mx-auto">
+        <div>
+          <SearchBar
+            collectionState={media}
+            setCurrentCollection={setMedia}
+            keys={["name"]}
+            placeholder="Start searching for your file here!"
+          />
+        </div>
+        <div className=" flex flex-wrap">
+          {media.map((m) => {
+            return <Media media={m} />;
+          })}
+        </div>
       </div>
     </>
   );
