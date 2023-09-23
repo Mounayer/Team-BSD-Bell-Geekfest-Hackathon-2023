@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <header className="bg-blue-custom p-4">
+    <header className="bg-blue-custom p-4  ">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white font-bold text-xl">LockIt</div>
         <nav className="space-x-4">

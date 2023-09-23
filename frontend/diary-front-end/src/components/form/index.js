@@ -187,11 +187,12 @@ export default function Form() {
 
   return (
     <>
-      <div className="centered w-full h-screen bg-blue-800 text-white">
+      <div className="centered w-full h-screen bg-gradient-to-br from-green-100 to-blue-100 text-black">
+        
         <h1 className="text-2xl text-center">Secure Your Information (feels a bit off centered maybe because of scroll bar)</h1>
 
         <div className="px-5">
-          <label for="countries" className="block mb-2 text-sm font-medium text-white">Information Type</label>
+          <label for="countries" className="block mb-2 text-sm font-medium">Information Type</label>
           <select value={selectedOption} onChange={handleChange} id="countries" className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="text/plain">Text</option>
             <option value="application/json">application/json</option>
@@ -204,8 +205,8 @@ export default function Form() {
           <br />
           <div className="px-5">
             <div className="mb-6">
-              <label for="default-input" className="block mb-2 text-sm font-medium text-white">Title</label>
-              <input type="text" id="default-input" {...register("title")} onChange={(e) => setTitle(e.target.value)} value={title} className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5" />
+              <label for="default-input" className="block mb-2 text-sm font-medium">Title</label>
+              <input type="text" id="default-input" {...register("title")} onChange={(e) => setTitle(e.target.value)} value={title} className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-custom focus:border-blue-custom block w-72 p-2.5" />
             </div>
           </div>
           {/* <h2>Data: </h2>
@@ -219,7 +220,7 @@ export default function Form() {
             accept={selectedOption}
           ></input>
         )} */}
-          <label for="default-input" className="block mb-2 text-sm font-medium text-white px-5">Data</label>
+          <label for="default-input" className="block mb-2 text-sm font-medium px-5">Data</label>
           {isText ? (
             <><div className="bg-white border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2 text-sm m-5">
               <h1 className="text-center text-xl italic col-span-6 text-black">Write Something</h1>
@@ -230,17 +231,17 @@ export default function Form() {
             // <input type="text" {...register("payload")} />
           ) : isImage ? (
             <div className="px-5">
-              <input type="file" name="file" ref={fileInput} accept=".gif, .jpeg, .jpg, .png, .webp" onChange={handleFileChange} className="block w-90 text-lg text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
+              <input type="file" name="file" ref={fileInput} accept=".gif, .jpeg, .jpg, .png, .webp" onChange={handleFileChange} className="block w-90 text-lg text-black border border-gray-300 rounded-lg cursor-pointer  focus:border-blue-custom  bg-gray-50 dark:text-black focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
               <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG ,GIF or WEBP</p>
             </div>
           ) : (
             <div className="px-5">
-              <input type="file" name="file" ref={fileInput} className="block w-90 text-lg text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
+              <input type="file" name="file" ref={fileInput} className="block w-90 text-lg text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:border-blue-custom focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
             </div>
           )}
           <br /> <br />
           <div className="px-5 ">
-          <button type="submit" className="w-64 text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Submit</button>
+          <button type="submit" className="w-64 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Submit</button>
           </div>
         </form>
         {data && (
