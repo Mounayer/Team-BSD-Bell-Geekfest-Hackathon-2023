@@ -51,7 +51,7 @@ Plans are available to accomodate the user's specific needs.
 
 The user is able to browse the data they stored.
 
-![Alt text](vault.png)
+![Alt text](vault2.png)
 
 ## Technologies Used
 
