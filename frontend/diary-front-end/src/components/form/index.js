@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRef } from "react";
 
+/**
+ *
+ * Form responsible for allowing user to upload various data types to backend
+ */
 export default function Form() {
   // retrieves the following properties and member functions from useForm
   const { register, handleSubmit } = useForm({
@@ -22,7 +26,6 @@ export default function Form() {
 
   const [data, setData] = useState(null);
   const [Location, setLocation] = useState(null);
-  const [userName, setUserName] = useState("");
   const [isImage, setIsImage] = useState(false);
 
   const router = useRouter();
@@ -119,10 +122,7 @@ export default function Form() {
     let idToken;
     try {
       idToken = (await getUser()).idToken;
-      let username = (await getUser()).username;
-      apiUrl =
-        "http://" + apiUrl + `/add?username=${username}&filename=${title}`;
-      setUserName(username);
+      apiUrl = "https://" + apiUrl + `/add?filename=${title}`;
     } catch (err) {
       console.log(err);
     }
