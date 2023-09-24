@@ -35,6 +35,9 @@ export async function init() {
   if (!user) {
     // Disable the Logout button
     logoutBtn.disabled = true;
+    loginBtn.classList.remove("hidden");
+    logoutBtn.classList.add("hidden");
+
     return;
   }
 
@@ -45,8 +48,12 @@ export async function init() {
   userSection.hidden = false;
 
   // Show the user's username
-  userSection.querySelector(".username").innerText = `Hello ${user.username}`;
+  userSection.querySelector(
+    ".username"
+  ).innerText = `Hello ${user.username}, welcome to your vault!`;
 
   // Disable the Login button
   loginBtn.disabled = true;
+  logoutBtn.classList.remove("hidden");
+  loginBtn.classList.add("hidden");
 }
