@@ -1,14 +1,10 @@
-'use client'
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useUser from "@/src/hooks/useUser";
 import Image from "next/image";
 
 const Video = ({ fileURL, media }) => {
-  const [videoBlobURL, setVideoBlobURL] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const user = useUser();
-  console.log(media.content_type);
 
   useEffect(() => {
     if (fileURL && user && media) {
@@ -18,20 +14,50 @@ const Video = ({ fileURL, media }) => {
           "Content-Type": media.content_type,
         },
       })
-        .then((res) => res.blob())
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return res.blob();
+        })
         .then((blob) => {
+          const blobURL = URL.createObjectURL(blob);
+          const videoElem = document.createElement("video");
 
+          videoElem.addEventListener("loadeddata", () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = videoElem.videoWidth;
+            canvas.height = videoElem.videoHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+            const thumbnailURL = canvas.toDataURL();
+            setThumbnail(thumbnailURL);
+          });
+
+          videoElem.src = blobURL;
+
+          videoElem.load();
+
+          // If the video fails to load, this will log the error
+          videoElem.addEventListener("error", (e) => {
+            console.log("Video failed to load.", e);
+          });
         })
         .catch((err) => {
-          console.log(err.message);
+          console.log("Error fetching video:", err.message);
         });
     }
   }, [fileURL, user]);
 
   return (
-    <div className=" bg-red-500 w-full h-full">
-        <h1>Hello there!</h1>
-        <h2>Bye world!</h2>
+    <div className="w-full h-full">
+      {thumbnail ? (
+        <div>
+          <Image src={thumbnail} alt="Video thumbnail" width={200} height={100} />
+        </div>
+      ) : (
+        <p>No thumbnail available</p>
+      )}
     </div>
   );
 };
