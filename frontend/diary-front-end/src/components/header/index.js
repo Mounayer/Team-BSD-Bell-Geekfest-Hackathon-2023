@@ -11,6 +11,13 @@ function Header() {
   <a href="/">
           <img src="logo-name.png" alt="Logo" className="w-auto h-10 " />
         </a>
+       
+        <nav className="flex  space-x-4 justify-between items-center"> {/* Add justify-center class */}
+        <a href="/" className="text-white hover:text-teal-200">Home</a>
+        <a href="/library" id="library2" className="text-white hover:text-teal-200">Library</a>
+        <a href="/subscription" id="subscr2" className="text-white hover:text-teal-200">Subscription</a>
+      </nav>
+     
         <button id="logout" className="text-white hover:text-teal-200">Log Out</button>
       </div>
     </header>
