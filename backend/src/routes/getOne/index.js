@@ -8,6 +8,7 @@ const { getUserFromToken } = require("../../helpers/index");
 module.exports = async function (req, res) {
   let file_name = req.query.filename;
   let dataType = req.query.dataType;
+  let contentType = req.query.contentType;
 
   const auth_header = req.headers["authorization"];
   const idToken = auth_header.split(" ")[1];

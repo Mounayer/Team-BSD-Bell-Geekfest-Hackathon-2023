@@ -1,7 +1,6 @@
-/**
- *
- * Neat lil header
- */
+'use client';
+import useUser from "@/src/hooks/useUser";
+
 function Header() {
   const user = useUser();
   console.log(user);

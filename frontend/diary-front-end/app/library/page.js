@@ -8,6 +8,7 @@ import SearchBar from "@/src/components/SearchBar";
 
 export default function Home() {
   const [metadata, setMetadata] = useState([]);
+  const [filteredMetadata, setFilteredMetadata] = useState([]);
   const user = useUser();
 
   useEffect(() => {
@@ -15,9 +16,11 @@ export default function Home() {
     // Wait for the DOM to be ready, then start the app
     addEventListener("DOMContentLoaded", init);
     if (user) {
-      fetch(
-        `http://${process.env.NEXT_PUBLIC_API_URL}/getalluserfiles?username=${user.username}`
-      )
+      fetch(`https://${process.env.NEXT_PUBLIC_API_URL}/getalluserfiles`, {
+        headers: {
+          Authorization: `Bearer ${user.idToken}`,
+        },
+      })
         .then((req) => {
           console.log(req);
           return req.json();
@@ -25,6 +28,7 @@ export default function Home() {
         .then((json) => {
           console.log(json);
           setMetadata(json);
+          setFilteredMetadata(json);
         })
         .catch((err) => {
           console.log(err.message);
@@ -40,13 +44,13 @@ export default function Home() {
             <div>
               <SearchBar
                 collectionState={metadata}
-                setCurrentCollection={setMetadata}
-                keys={["name"]}
+                setCurrentCollection={setFilteredMetadata}
+                keys={["file_name"]}
                 placeholder="Start searching for your file here!"
               />
             </div>
             <div className=" flex flex-wrap">
-              {metadata.map((m) => {
+              {filteredMetadata.map((m) => {
                 console.log(m);
                 return (
                   <div>
@@ -58,14 +62,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {!user && (
-        <div className=" flex flex-col pt-[150px] items-center justify-center">
-          <span className=" text-yellow-400 font-bold text-[50px]">
-            <ExclamationIcon />
-          </span>
-          <span className=" py-4 text-lg">You are not logged in!</span>
-        </div>
-      )}
+      {!user && <h1>You are not logged in!</h1>}
     </>
   );
 }

@@ -13,6 +13,7 @@ const SearchBar = ({ collectionState, setCurrentCollection, keys, placeholder })
         distance: 2
     };
     const initialCollectionRef = useRef(collectionState);
+    console.log(initialCollectionRef);
 
     return (
         <form className="w-full">
@@ -27,17 +28,16 @@ const SearchBar = ({ collectionState, setCurrentCollection, keys, placeholder })
 
     function handleInputChange(e) {
         const inputValue = e.target.value.trim();
-        if(inputValue == '') {
-            setCurrentCollection(initialCollectionRef.current);
+        if (inputValue == '') {
+          setCurrentCollection(collectionState);
+        } else {
+          const words = inputValue.split(' ').join('|');
+          const fuse = new Fuse(collectionState, options);
+          const resultingArray = fuse.search(words).map(searchResult => searchResult.item);
+          setCurrentCollection(resultingArray);
         }
-        else {
-            const words = inputValue.split(' ').join('|');
-            const fuse = new Fuse(collectionState, options);
-            const resultingArray = fuse.search(words).map(searchResult => searchResult.item);
-            
-            setCurrentCollection(resultingArray);
-        }
-    }
+      }
+      
 }
 
 export default SearchBar
