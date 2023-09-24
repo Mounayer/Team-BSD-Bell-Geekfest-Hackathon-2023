@@ -16,7 +16,6 @@ export default function page() {
     const fetchPrices = async () => {
         const {data} = await axios.get('api/getproducts')
         setPrices(data)
-        console.log(data)
     }
 
     return (

@@ -48,8 +48,6 @@ async function getUser() {
     // Get the user's username
     const username = currentAuthenticatedUser.username;
 
-    // If that didn't throw, we have a user object, and the user is authenticated
-    console.log("The user is authenticated", username);
 
     // Get the user's Identity Token, which we'll use later with our
     // microservice. See discussion of various tokens:
@@ -62,9 +60,6 @@ async function getUser() {
     const accessToken =
       currentAuthenticatedUser.signInUserSession.accessToken.jwtToken;
 
-    console.log(`The UserName is: ${username}`);
-    console.log(`The SUB UUID for the user is: ${sub}`);
-    console.log(`The Bearer token is:\nBearer ${idToken}`);
 
     // Return a simplified "user" object
     return {

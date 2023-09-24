@@ -34,13 +34,14 @@ export default function Home() {
             <h1 className="text-4xl font-bold text-blue-custom font-extrabold font-montserrat text-center mt-10">
               Welcome to Lock-it
             </h1>
+            <br></br>
             <section id="user" className=" py-10">
             <h1 className="username text-left text-2xl font-bold text-blue-custom font-extrabold font-montserrat">
-              You are not Logged In. <br></br>
+              You are not Logged In. <br></br><br></br>
               Log In or create an account and start storing securely now <br />
               Lock-it makes use of Amazon Web Services to insure that your data
               will be safe.
-              <br />
+              <br /><br></br>
               All the stored data is encrypted, Only you will be able to access
               your data
             </h1>

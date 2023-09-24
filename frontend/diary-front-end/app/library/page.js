@@ -23,11 +23,9 @@ export default function Home() {
         },
       })
         .then((req) => {
-          console.log(req);
           return req.json();
         })
         .then((json) => {
-          console.log(json);
           setMetadata(json);
           setFilteredMetadata(json);
         })
@@ -77,7 +75,6 @@ export default function Home() {
 
             <div className="flex flex-wrap">
               {filteredMetadata.map((m) => {
-                console.log(m);
                 return (
                   <div key={m._id}>
                     <Media media={m} />

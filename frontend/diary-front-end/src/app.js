@@ -11,8 +11,6 @@ export async function init() {
   const subscrBtn = document.querySelector("#subscr");
   const libraryBtn2 = document.querySelector("#library2");
   const subscrBtn2 = document.querySelector("#subscr2");
-  console.log(loginBtn);
-  console.log(logoutBtn);
 
   if (loginBtn) {
     loginBtn.onclick = () => {
@@ -52,7 +50,6 @@ export async function init() {
   }
 
   // Log the user info for debugging purposes
-  console.log({ user });
 
   // Update the UI to welcome the user
   //userSection.hidden = false;

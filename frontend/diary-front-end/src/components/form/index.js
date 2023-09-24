@@ -32,7 +32,7 @@ export default function Form() {
 
   // Simple callback to go back to root
   function goHome() {
-    router.push("/");
+    router.push("/library");
   }
 
   const [selectedOption, setSelectedOption] = useState("text/plain");
@@ -102,14 +102,11 @@ export default function Form() {
     //     ? JSON.stringify({ message: data["payload"] })
     //     : data["payload"];
     let to_send = data["payload"];
-    console.log(`selectedContentType: ${selectedContentType}`);
     if (selectedContentType === "application/json") {
       try {
-        console.log(`Logging to_send ${to_send}`);
         //to_send = JSON.stringify(JSON.parse(data["payload"]));
         to_send = JSON.stringify({ message: to_send });
 
-        console.log(`Logging to_send after json convert ${to_send}`);
       } catch (e) {
         console.error("Invalid JSON input:", e);
         return; // or handle this error in a user-friendly way
@@ -151,10 +148,11 @@ export default function Form() {
         })
           .then((response) => {
             setLocation(response.headers.get("Location"));
-            return response.json();
+            return response;
           })
           .then((res) => {
             setData(res);
+            goHome();
           })
           .catch((err) => {
             console.log(err);
@@ -174,10 +172,11 @@ export default function Form() {
       })
         .then((response) => {
           setLocation(response.headers.get("Location"));
-          return response.json();
+          return response;
         })
         .then((res) => {
           setData(res);
+          goHome();
         })
         .catch((err) => {
           console.log(err);
@@ -317,72 +316,5 @@ export default function Form() {
     </>
   );
 
-  //   return (
-  //     <>
-  //         <div className="centered w-full h-screen bg-gradient-to-br text-black p-10">
-  //             <h1 className="text-4xl font-bold font-montserrat text-center mb-8">Secure Your Information</h1>
-
-  //             <div className="flex justify-center">
-  //                 {/* Left Column */}
-  //                 <div className="md:w-1/5 p-5">
-  //                     <label htmlFor="countries" className="block mb-2 text-lg font-bold font-montserrat">Information Type</label>
-  //                     <select value={selectedOption} onChange={handleChange} id="countries" className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  //                         <option value="text/plain">Text</option>
-  //                         <option value="application/json">application/json</option>
-  //                         <option value="image/jpeg">Image</option>
-  //                         <option value="application/octet-stream">Files</option>
-  //                     </select>
-  //                 </div>
-
-  //                 {/* Right Column */}
-  //                 <div className="md:w-4/5 p-5">
-  //                     <form onSubmit={handleSubmit(whatToDo)}>
-  //                         {/* Title Input */}
-  //                         <div className="mb-6 text-center">
-  //                             <label htmlFor="default-input" className="block mb-2 text-2xl font-bold font-montserrat">Title</label>
-  //                             <input type="text" id="default-input" {...register("title")} onChange={(e) => setTitle(e.target.value)} value={title} className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-custom focus:border-blue-300 block w-full p-2.5" />
-  //                         </div>
-
-  //                         {/* Data Input */}
-  //                         <div className="text-center">
-  //                             <label htmlFor="default-input" className="block mb-2 text-2xl font-bold font-montserrat">Data</label>
-  //                             {isText ? (
-  //                                 // Text Input
-  //                                 <div className="bg-white border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2 text-sm m-5">
-  //                                     <h1 className="text-center text-xl italic col-span-6 font-montserrat text-black">Write Something</h1>
-  //                                     <div className="flex justify-center col-span-6 px-5 py-3">
-  //                                         <textarea type="text" {...register("payload")} placeholder="Whatever your heart desires..." className="bg-slate-100 text-slate-600 h-28 w-full placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 resize-none outline-none rounded-lg p-2 duration-300 focus:ring-blue-500 focus:border-blue-500 block"></textarea>
-  //                                     </div>
-  //                                 </div>
-  //                             ) : isImage ? (
-  //                                 // Image Input
-  //                                 <div className="px-5 py-3 border border-gray-300 rounded-lg bg-gray-50 flex items-center justify-center hover:bg-gray-100 cursor-pointer">
-  //                                     <span className="block text-center font-montserrat text-lg">Drag & Drop or Click to Upload Image</span>
-  //                                     <input type="file" name="file" ref={fileInput} accept=".gif, .jpeg, .jpg, .png, .webp" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-  //                                 </div>
-  //                             ) : (
-  //                                 // Other File Input
-  //                                 <div className="px-5 py-3 border border-gray-300 rounded-lg bg-gray-50 flex items-center justify-center hover:bg-gray-100 cursor-pointer">
-  //                                     <span className="block text-center font-montserrat text-lg">Drag & Drop or Click to Upload File</span>
-  //                                     <input type="file" name="file" ref={fileInput} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-  //                                 </div>
-  //                             )}
-  //                         </div>
-
-  //                         <div className="flex justify-end mt-4">
-  //                             <button type="submit" className="w-64 text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
-  //                         </div>
-  //                     </form>
-
-  //                     {data && (
-  //                         <>
-  //                             <h2 className="mt-5 text-2xl font-bold font-montserrat">Server Response</h2>
-  //                             {/* Display server response here */}
-  //                         </>
-  //                     )}
-  //                 </div>
-  //             </div>
-  //         </div>
-  //     </>
-  // );
+ 
 }
