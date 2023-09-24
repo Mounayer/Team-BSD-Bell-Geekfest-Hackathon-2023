@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getUser } from "@/src/auth";
 import { useRouter } from 'next/navigation'
-import Modal from "@/src/components/modal/modal";
+
 
 export default function Home() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  
   const router = useRouter()
   useEffect(() => {
     init();
@@ -16,13 +16,7 @@ export default function Home() {
     addEventListener("DOMContentLoaded", init);
   }, []);
 
-  const openModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
-  };
+  
 
 
   return (
@@ -36,14 +30,7 @@ export default function Home() {
       Form
       </button>
 
-      <button
-        onClick={openModal}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Open Form Modal
-      </button>
-
-      <Modal isOpen={isModalVisible} onClose={closeModal} />
+     
     
 
       <button id="login">Log In</button>
