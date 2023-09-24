@@ -10,6 +10,8 @@ module.exports = async function (req, res) {
   let dataType = req.query.dataType;
   let contentType = req.query.contentType;
 
+  console.log(`Authorization Header: ${req.headers["Authorization"]}`);
+
   const auth_header = req.headers["authorization"];
   const idToken = auth_header.split(" ")[1];
   const payload = getUserFromToken(idToken);

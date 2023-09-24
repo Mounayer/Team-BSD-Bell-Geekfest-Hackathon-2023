@@ -19,7 +19,7 @@ router.get("/", authenticate(), (req, res) => {
 router.post("/add", authenticate(), handleData, add);
 
 //router.post("/add", authenticate(), add);
-router.get("/getone", getOne);
+router.get("/getone", authenticate(), getOne);
 
 //router.post("/add", authenticate(), add);
 router.get("/getalluserfiles", getAllMetadata);
