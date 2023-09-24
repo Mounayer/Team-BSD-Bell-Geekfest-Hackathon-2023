@@ -1,20 +1,31 @@
 import React from 'react'
 import TextParagraph from '@/src/components/text/textParagraph'
-import TextHeader from '@/src/components/text/textHeader'
+import Header from '@/src/components/text/textHeader'
 
 
 export default function page() {
   return (
-    <> <div className="flex justify-center ">
+    <>  <div className="flex m-10">
    
-    <div> <img
-        src="/logo.svg" // Replace with the actual path to your image
-        alt="Big Image"
+
+    {/* Right Column */}
+    <div className="w-40%">
+    <Header text ="AAAA" />
+
+    </div> 
+    {/* Left Column */}
+    <div className="w-60%">
+      <img
+        src="logo-name-nowhite.png"
+        alt="Image 1"
         className="w-full h-auto"
-      /><TextHeader text="About US"/><TextParagraph text="This is some sample text that will be placed in a paragraph."/>
-    <div className="w-1/2">
-      
+      />
+      <img
+        src="logo-name-nowhite.png"
+        alt="Image 2"
+        className="w-full h-auto"
+      />
     </div>
-  </div></div></>
+  </div></>
   )
 }
