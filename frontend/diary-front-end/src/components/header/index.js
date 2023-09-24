@@ -1,16 +1,12 @@
-/**
- *
- * Neat lil header
- */
 function Header() {
   return (
-    <footer className="bg-blue-custom py-6">
-      <div className="container mx-auto text-center text-white font-bold text-xl">
-        <a href="/" className="text-white hover:text-teal-200">
-          LockIt
+    <header className="bg-blue-custom p-4">
+      <div className="container mx-auto flex justify-center items-center">
+        <a href="/">
+          <img src="logo-name.png" alt="Logo" className="w-auto h-10 " />
         </a>
       </div>
-    </footer>
+    </header>
   );
 }
 

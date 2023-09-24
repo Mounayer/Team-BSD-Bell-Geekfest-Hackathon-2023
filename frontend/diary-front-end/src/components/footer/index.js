@@ -11,7 +11,7 @@ function Footer() {
           <a href="#" className="text-white hover:text-teal-200">
             Help
           </a>
-          <a href="#" className="text-white hover:text-teal-200">
+          <a href="/about-us" className="text-white hover:text-teal-200">
             About Us
           </a>
           <a href="#" className="text-white hover:text-teal-200">
