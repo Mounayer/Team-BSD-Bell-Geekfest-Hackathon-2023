@@ -8,6 +8,7 @@ import CoolCard from "@/src/components/card";
 
 export default function Home() {
   const router = useRouter();
+
   useEffect(() => {
     init();
     // Wait for the DOM to be ready, then start the app
