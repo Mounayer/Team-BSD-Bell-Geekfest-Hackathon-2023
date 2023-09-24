@@ -1,4 +1,7 @@
 function Header() {
+  const user = useUser();
+  console.log(user);
+
   return (
     <header className="bg-blue-custom p-4">
       <div className="container mx-auto flex justify-center items-center">
