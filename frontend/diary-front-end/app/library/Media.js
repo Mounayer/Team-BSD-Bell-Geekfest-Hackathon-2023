@@ -4,6 +4,7 @@ import Picture from "@/src/components/mediaThumbnail/Picture";
 import useUser from "@/src/hooks/useUser";
 import Video from "@/src/components/mediaThumbnail/video";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Media = ({ media }) => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,39 @@ const Media = ({ media }) => {
     : null;
   const [blobURL, setBlobURL] = useState(null);
   const onClickHandler = getOnClickHandler();
+  const [blob, setBlob] = useState(null);
+
+  function handleBlobClick() {
+    if (blob) {
+      const a = document.createElement("a");
+      a.href = blob;
+      a.download = media.file_name;
+      a.click();
+      URL.revokeObjectURL(blob); // Free up memory
+    }
+  }
+
+  useEffect(() => {
+    if (fileURL && user && media) {
+      fetch(fileURL, {
+        headers: {
+          Authorization: `Bearer ${user.idToken}`,
+          "Content-Type": media.content_type,
+        },
+      })
+        .then((res) => res.blob())
+        .then((downloadedBlob) => {
+          if (downloadedBlob.size > 0) {
+            // Check if blob is not empty
+            const url = URL.createObjectURL(downloadedBlob);
+            setBlob(url);
+          } else {
+            console.error("Received empty blob");
+          }
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [fileURL, user]);
 
   return (
     <div
@@ -31,13 +65,30 @@ const Media = ({ media }) => {
     </div>
   );
 
+  function downloadBlob(blob, fileName) {
+    const blobURL = URL.createObjectURL(blob);
+    const tempLink = document.createElement("a");
+
+    tempLink.href = blobURL;
+    tempLink.setAttribute("download", fileName);
+    tempLink.setAttribute("target", "_blank");
+    document.body.appendChild(tempLink);
+
+    tempLink.click();
+    document.body.removeChild(tempLink);
+  }
+
   function getOnClickHandler() {
-    if (media.data_type == "image" && blobURL) {
+    if (media.data_type === "image" && blobURL) {
       return () => window.open(blobURL, "_blank");
     }
-    if (media.data_type == "text") {
-      return () => onOpenModal();
+    if (
+      media.data_type === "text" ||
+      (media.data_type === "file" && media.file_extension === "mp4")
+    ) {
+      return () => blob && downloadBlob(new Blob([blob]), media.file_name);
     }
+    return handleBlobClick;
   }
 
   function getMediaThumbnail() {
