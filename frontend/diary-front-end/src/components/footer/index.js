@@ -1,3 +1,7 @@
+/**
+ *
+ * Neat lil-footer
+ */
 function Footer() {
   return (
     <header className="bg-blue-custom p-4">
