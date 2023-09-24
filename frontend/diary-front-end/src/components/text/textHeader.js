@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const TextHeader = ({ text }) => {
+const Header = ({ text }) => {
   return (
-
-      <h1 className=" font-bold  text-center text-blue p-4 ">{text}</h1>
-    
+    <header className="py-4 text-black font-almarai font-semibold text-2xl text-center">
+      {text}
+    </header>
   );
 };
 
-export default TextHeader;
+export default Header;
