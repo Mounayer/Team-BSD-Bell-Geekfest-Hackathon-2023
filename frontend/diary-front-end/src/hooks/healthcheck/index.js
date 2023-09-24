@@ -1,15 +1,22 @@
 import { getUser } from "@/src/auth";
 
+/**
+ *
+ * Simple health check to verify server is running
+ */
 export default async function healthCheck() {
   try {
     const { idToken } = await getUser();
 
-    const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${idToken}`,
-      },
-    });
+    const response = await fetch(
+      `https://${process.env.NEXT_PUBLIC_API_URL}/`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      }
+    );
 
     const res = await response.text();
 
