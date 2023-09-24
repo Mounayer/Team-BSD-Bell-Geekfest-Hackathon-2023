@@ -17,7 +17,7 @@ function Footer() {
           <a href="#" className="text-white hover:text-teal-200">
             FAQ
           </a>
-          <a href="#" className="text-white hover:text-teal-200">
+          <a href="/policies" className="text-white hover:text-teal-200">
             Policies
           </a>
         </nav>
