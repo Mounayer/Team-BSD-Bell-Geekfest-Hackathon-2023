@@ -22,6 +22,6 @@ router.post("/add", authenticate(), handleData, add);
 router.get("/getone", authenticate(), getOne);
 
 //router.post("/add", authenticate(), add);
-router.get("/getalluserfiles", getAllMetadata);
+router.get("/getalluserfiles", authenticate(), getAllMetadata);
 
 module.exports.router = router;

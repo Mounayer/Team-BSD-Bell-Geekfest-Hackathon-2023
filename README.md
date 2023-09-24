@@ -5,7 +5,7 @@
 [Andrii Sych](https://github.com/SychAndrii)  
 [Majd Al Mnayer](https://github.com/Mounayer)  
 [Mohammed Aminoor Rahman](https://github.com/Mrahman141)  
-[Tatiana Kashcheeva](https://github.com/Amoraa)  
+[Tatiana Kashcheeva](https://github.com/Amoraa)
 
 ## Lock-It
 
@@ -16,6 +16,14 @@ Lock-It uses various encryption and security features that prevent unauthorized 
 Lock-It also promises its users a 99.999999999% durability of storing data.
 
 Lock-It does not have any access to its users' information, it acts as a messenger that retrieves data from its users in a secure fashion and stores it in a secure vault.
+
+## Lock-It Behavior Diagram
+
+![Alt text](behavior.png)
+
+## Lock-It Demo
+
+[Demo](https://www.youtube.com/watch?v=UElJ5i5aAXA)
 
 ## Screenshots of Lock-It
 
@@ -98,3 +106,38 @@ The user is able to browse all the data they stored using Lock-It and has comple
     - NEXT_PUBLIC_API_URL
     - API_STRIPE_KEY
     - STRIPE_SECRET_KEY
+
+## Back-End Dependencies
+
+Backend is Express.js, Node.js:
+
+    - tailwindcss
+    - axios
+    - bootstrap
+    - autoprefixer
+    - aws-amplify
+    - fuse.js
+    - postcss
+    - stripe
+
+## Front-End Dependencies
+
+Frontend is Next.js (13):
+
+    - @aws-sdk/client-s3
+    - aws-amplify
+    - aws-jwt-verify
+    - aws-sdk
+    - body-parser
+    - compression
+    - cors
+    - dotenv
+    - helmet
+    - jsonwebtoken
+    - mongodb
+    - multer
+    - nodemon
+    - passport
+    - passport-http-bearer
+    - selfsigned
+    - stoppable
