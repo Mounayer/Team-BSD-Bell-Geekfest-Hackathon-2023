@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import useUser from "@/src/hooks/useUser";
-import Image from "next/image";
 
 const Video = ({ fileURL, media }) => {
   const [thumbnail, setThumbnail] = useState(null);
