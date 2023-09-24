@@ -50,7 +50,7 @@ export async function init() {
   // Show the user's username
   userSection.querySelector(
     ".username"
-  ).innerText = `Hello ${user.username}, welcome to your vault!`;
+  ).innerText = `Hello ${user.username}, welcome to your secure vault!`;
 
   // Disable the Login button
   loginBtn.disabled = true;
