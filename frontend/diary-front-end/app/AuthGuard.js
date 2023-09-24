@@ -8,19 +8,15 @@ const AuthGuard = ({ children }) => {
   const pathname = usePathname();
   const router = useRouter();
   const [canSeeContent, setCanSeeContent] = useState(false);
-  const allowedRoutes = [
-    '/'
-  ];
+  const allowedRoutes = ["/"];
 
   useEffect(() => {
     getUser().then((user) => {
-      if (!user && allowedRoutes.contains(pathname)) {
+      if (!user && allowedRoutes.includes(pathname)) {
         setCanSeeContent(true);
-      }
-      else if(!user && !allowedRoutes.contains(pathname)) {
-        router.push('/');
-      }
-      else {
+      } else if (!user && !allowedRoutes.includes(pathname)) {
+        router.push("/");
+      } else {
         setCanSeeContent(true);
       }
     });
