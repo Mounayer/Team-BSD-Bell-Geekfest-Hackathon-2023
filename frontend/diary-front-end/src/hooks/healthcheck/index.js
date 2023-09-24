@@ -1,5 +1,9 @@
 import { getUser } from "@/src/auth";
 
+/**
+ *
+ * Simple health check to verify server is running
+ */
 export default async function healthCheck() {
   try {
     const { idToken } = await getUser();

@@ -16,7 +16,7 @@ router.get("/", authenticate(), (req, res) => {
 });
 
 //router.post("/add", authenticate(), add);
-router.post("/add", handleData, add);
+router.post("/add", authenticate(), handleData, add);
 
 //router.post("/add", authenticate(), add);
 router.get("/getone", getOne);
