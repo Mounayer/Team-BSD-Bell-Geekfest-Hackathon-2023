@@ -2,10 +2,10 @@
 
 ## Team Members
 
-[Andrii Sych](https://github.com/SychAndrii)
-[Majd Al Mnayer](https://github.com/Mounayer)
-[Mohammed Aminoor Rahman](https://github.com/Mrahman141)
-[Tatiana Kashcheeva](https://github.com/Amoraa)
+[Andrii Sych](https://github.com/SychAndrii)  
+[Majd Al Mnayer](https://github.com/Mounayer)  
+[Mohammed Aminoor Rahman](https://github.com/Mrahman141)  
+[Tatiana Kashcheeva](https://github.com/Amoraa)  
 
 ## Lock-It
 
