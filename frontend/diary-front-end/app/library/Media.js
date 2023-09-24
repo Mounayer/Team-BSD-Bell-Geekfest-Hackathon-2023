@@ -22,7 +22,7 @@ const Media = ({ media }) => {
 
   function getMediaThumbnail() {
     if (media.data_type == "text") {
-      return <Text  />;
+      return <Text fileExtension={media.file_extension} />;
     }
     if (media.data_type == "image") {
       return <Picture fileURL={fileURL} />;

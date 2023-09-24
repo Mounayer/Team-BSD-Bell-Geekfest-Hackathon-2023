@@ -1,10 +1,17 @@
 import React from "react";
-import { GrDocumentTxt } from "react-icons/gr";
+import { BsFiletypeTxt } from "react-icons/bs";
+import { BsFiletypeJson } from "react-icons/bs";
 
-const Text = () => {
+const Text = ({fileExtension}) => {
+  let thumbnail = <BsFiletypeTxt />;
+  
+  if(fileExtension == '.json') {
+    thumbnail = <BsFiletypeJson />
+  }
+
   return (
     <div>
-      <GrDocumentTxt style={style} />
+      {thumbnail}
     </div>
   );
 };

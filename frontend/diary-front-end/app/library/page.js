@@ -1,11 +1,10 @@
 "use client";
-import { init } from "./../src/app";
+import { init } from "@/src/app";
 import { useEffect } from "react";
 import { useState } from "react";
 import useUser from "@/src/hooks/useUser";
 import Media from "./Media";
 import SearchBar from "@/src/components/SearchBar";
-import ExclamationIcon from "@/src/components/icons/ExclamationIcon";
 
 export default function Home() {
   const [metadata, setMetadata] = useState([]);
