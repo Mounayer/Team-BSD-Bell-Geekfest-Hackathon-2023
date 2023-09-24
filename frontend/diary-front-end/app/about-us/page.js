@@ -8,7 +8,7 @@ export default function page() {
     <> <div className="flex justify-center ">
    
     <div> <img
-        src="/logo.png" // Replace with the actual path to your image
+        src="/logo.svg" // Replace with the actual path to your image
         alt="Big Image"
         className="w-full h-auto"
       /><TextHeader text="About US"/><TextParagraph text="This is some sample text that will be placed in a paragraph."/>
