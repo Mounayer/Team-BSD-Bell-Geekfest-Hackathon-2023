@@ -1,5 +1,12 @@
 # Team-BSD-Bell-Hackathon-2023
 
+## Team Members
+
+    - [Andrii Sych](https://github.com/SychAndrii)
+    - [Majd Al Mnayer](https://github.com/Mounayer)
+    - [Mohammed Aminoor Rahman](https://github.com/Mrahman141)
+    - [Tatiana Kashcheeva](https://github.com/Amoraa)
+
 ## Lock-It
 
 Lock-It is a secure data storage system that aims to provide its users with a complete sense of security and privacy.
