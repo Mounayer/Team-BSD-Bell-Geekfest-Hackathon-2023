@@ -2,8 +2,6 @@ import Text from "@/src/components/mediaThumbnail/Text";
 import React, { useEffect } from "react";
 import Picture from "@/src/components/mediaThumbnail/Picture";
 import useUser from "@/src/hooks/useUser";
-import { useState } from "react";
-import defaultImage from "@/src/assets/defaultImage.jpg";
 
 const Media = ({ media }) => {
   const user = useUser();
@@ -24,7 +22,7 @@ const Media = ({ media }) => {
 
   function getMediaThumbnail() {
     if (media.data_type == "text") {
-      return <Text />;
+      return <Text  />;
     }
     if (media.data_type == "image") {
       return <Picture fileURL={fileURL} />;
