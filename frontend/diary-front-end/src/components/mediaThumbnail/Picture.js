@@ -1,12 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRef } from "react";
-import defaultImage from '@/src/assets/defaultImage.jpg'
+import defaultImage from "@/src/assets/defaultImage.jpg";
 
-const Picture = ({blob}) => {
+const Picture = ({ fileURL }) => {
+  const [blob, setBlob] = useState(defaultImage);
+
+  useEffect(() => {
+    if (fileURL != null) {
+      fetch(fileURL)
+        .then((res) => {
+          return res.blob();
+        })
+        .then((blob) => {
+          const imgURL = URL.createObjectURL(blob);
+          console.log(imgURL);
+          setBlob(imgURL);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  }, [fileURL]);
+  
   return (
     <div className="h-full w-full relative">
-      {blob && <Image layout="fill" src={blob} alt="user image" />}
+      <Image layout="fill" src={blob} alt="user image" />
     </div>
   );
 };

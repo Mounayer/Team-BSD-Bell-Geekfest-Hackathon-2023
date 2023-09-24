@@ -7,34 +7,16 @@ import defaultImage from "@/src/assets/defaultImage.jpg";
 
 const Media = ({ media }) => {
   const user = useUser();
-  const [blob, setBlob] = useState(null);
   const fileURL = user
     ? `http://${process.env.NEXT_PUBLIC_API_URL}/getone?username=${user.username}&filename=${media.file_name}&dataType=${media.data_type}`
-    : defaultImage;
-
-  useEffect(() => {
-    if (fileURL != defaultImage) {
-      fetch(fileURL)
-        .then((res) => {
-          return res.blob();
-        })
-        .then((blob) => {
-          const imgURL = URL.createObjectURL(blob);
-          console.log(imgURL);
-          setBlob(imgURL)
-        })
-        .catch(err => {
-          console.log(err.message);
-        })
-    }
-  }, [fileURL]);
-
+    : null;
+  console.log(media);
   return (
-    <div className=" flex mx-5 flex-col border-black border w-[170px] h-[250px]">
+    <div className=" flex mx-5 flex-col border-black border w-[140px] h-[220px]">
       <div className=" h-full flex justify-center items-center">
         {getMediaThumbnail()}
       </div>
-      <div className=" p-5 bg-slate-200 text-center text-sm">
+      <div className=" p-5 bg-black bg-opacity-25 text-white opacity-90 text-center text-sm">
         <h2>{media.file_name}</h2>
       </div>
     </div>
@@ -42,12 +24,10 @@ const Media = ({ media }) => {
 
   function getMediaThumbnail() {
     if (media.data_type == "text") {
-      console.log("THIS");
       return <Text />;
     }
     if (media.data_type == "image") {
-      console.log("FOUND IMAGE");
-      return <Picture blob={blob} />;
+      return <Picture fileURL={fileURL} />;
     }
   }
 };
