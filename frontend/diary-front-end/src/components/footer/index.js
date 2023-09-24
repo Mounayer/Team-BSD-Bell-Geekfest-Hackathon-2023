@@ -6,7 +6,7 @@ function Footer() {
   return (
     <header className="bg-blue-custom p-4  ">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white font-bold text-xl">Lock-It</div>
+        <div className="text-white font-bold text-xl">Lock-it</div>
         <nav className="space-x-5">
           <a href="/" className="text-white hover:text-teal-200">
             Home

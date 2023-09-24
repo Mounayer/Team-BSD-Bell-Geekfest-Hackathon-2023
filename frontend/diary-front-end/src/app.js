@@ -7,6 +7,10 @@ export async function init() {
   const userSection = document.querySelector("#user");
   const loginBtn = document.querySelector("#login");
   const logoutBtn = document.querySelector("#logout");
+  const libraryBtn = document.querySelector("#library");
+  const subscrBtn = document.querySelector("#subscr");
+  const libraryBtn2 = document.querySelector("#library2");
+  const subscrBtn2 = document.querySelector("#subscr2");
   console.log(loginBtn);
   console.log(logoutBtn);
 
@@ -39,6 +43,10 @@ export async function init() {
     logoutBtn.disabled = true;
     loginBtn.classList.remove("hidden");
     logoutBtn.classList.add("hidden");
+    libraryBtn.classList.add("hidden");
+    subscrBtn.classList.add("hidden");
+    libraryBtn2.classList.add("hidden");
+    subscrBtn2.classList.add("hidden");
 
     return;
   }
@@ -58,4 +66,8 @@ export async function init() {
   loginBtn.disabled = true;
   logoutBtn.classList.remove("hidden");
   loginBtn.classList.add("hidden");
+  libraryBtn.classList.remove("hidden");
+  subscrBtn.classList.remove("hidden");
+  libraryBtn2.classList.remove("hidden");
+  subscrBtn2.classList.remove("hidden");
 }
