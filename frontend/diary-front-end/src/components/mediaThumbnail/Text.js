@@ -4,13 +4,14 @@ import { BsFiletypeJson } from "react-icons/bs";
 
 const Text = ({fileExtension}) => {
   let thumbnail = <BsFiletypeTxt />;
+  console.log(fileExtension);
   
   if(fileExtension == '.json') {
     thumbnail = <BsFiletypeJson />
   }
 
   return (
-    <div>
+    <div className=" text-[70px] text-slate-400">
       {thumbnail}
     </div>
   );
