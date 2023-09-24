@@ -43,11 +43,11 @@ export default function Home() {
         <div>
           <div className="max-w-[1500px] mx-auto">
            
-            <h1 className="font-semibold text-custom-blue text-4xl text-center my-6">
-              Your Lock-it Library
+            <h1 className=" text-blue-custom font-extrabold font-montserrat text-4xl text-center my-6">
+              Your Lock-it Vault
             </h1>
 
-            <h2 className="font-semibold text-custom-blue text-lg mb-3">
+            <h2 className=" text-blue-custom font-extrabold font-montserrat text-lg mb-3">
               Search your files now! Click on the file icon to download
             </h2>
 
@@ -64,7 +64,7 @@ export default function Home() {
 
               {/* Button Next to Search Bar */}
               <div className="ml-5">
-                <h2 className="font-semibold text-custom-blue text-lg mb-3">
+                <h2 className=" text-blue-custom font-extrabold font-montserrat text-lg mb-3">
                   Upload new file
                 </h2>
                 <Link href="/form">

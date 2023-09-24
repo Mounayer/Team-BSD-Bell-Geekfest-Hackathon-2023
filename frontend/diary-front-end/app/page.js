@@ -53,8 +53,8 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-20 justify-items-center">
                 <CoolCard name="Log In" id="login"></CoolCard>
 
-                <CoolCard name="Library" href="/library" id="library"></CoolCard>
-                <CoolCard name="Subscripe" href="/subscription" id="subscr"></CoolCard>
+                <CoolCard name="Vault" href="/library" id="library"></CoolCard>
+                <CoolCard name="Plans" href="/subscription" id="subscr"></CoolCard>
               </div>
             </div>
           </div>

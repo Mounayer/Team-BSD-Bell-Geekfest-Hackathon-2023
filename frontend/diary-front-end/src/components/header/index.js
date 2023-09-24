@@ -14,8 +14,8 @@ function Header() {
        
         <nav className="flex  space-x-4 justify-between items-center"> {/* Add justify-center class */}
         <a href="/" className="text-white hover:text-teal-200">Home</a>
-        <a href="/library" id="library2" className="text-white hover:text-teal-200">Library</a>
-        <a href="/subscription" id="subscr2" className="text-white hover:text-teal-200">Subscription</a>
+        <a href="/library" id="library2" className="text-white hover:text-teal-200">Vault</a>
+        <a href="/subscription" id="subscr2" className="text-white hover:text-teal-200">Plans</a>
       </nav>
      
         <button id="logout" className="text-white hover:text-teal-200">Log Out</button>

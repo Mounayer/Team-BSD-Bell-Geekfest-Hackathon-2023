@@ -14,29 +14,29 @@ Lock-It does not have any access to its users' information, it acts as a messeng
 
 ### Home Page
 
-![Alt text](image.png)
+![Alt text](home.png)
 
 ### Store Data
 
 User is able to store any image, file, or text securely.
 
-![Alt text](image-1.png)
+![Alt text](form.png)
 
 ### Plans
 
 Plans are available to accomodate the user's specific needs.
 
-![Alt text](image-2.png)
+![Alt text](plans.png)
 
 ### Stripe Checkout
 
 ![Alt text](image-3.png)
 
-### Library
+### The Vault
 
 The user is able to browse the data they stored.
 
-![Alt text](image-4.png)
+![Alt text](vault.png)
 
 ## Technologies Used
 
