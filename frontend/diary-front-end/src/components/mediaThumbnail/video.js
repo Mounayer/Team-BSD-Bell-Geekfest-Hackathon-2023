@@ -50,14 +50,8 @@ const Video = ({ fileURL, media }) => {
   }, [fileURL, user]);
 
   return (
-    <div className="w-full h-full">
-      {thumbnail ? (
-        <div>
-          <Image src={thumbnail} alt="Video thumbnail" width={200} height={100} />
-        </div>
-      ) : (
-        <p>No thumbnail available</p>
-      )}
+    <div className="w-full h-full bg-red-500">
+      <h1 className=" text-white">Video</h1>
     </div>
   );
 };

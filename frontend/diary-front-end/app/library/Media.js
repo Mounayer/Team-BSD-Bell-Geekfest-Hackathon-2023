@@ -4,6 +4,7 @@ import Picture from "@/src/components/mediaThumbnail/Picture";
 import useUser from "@/src/hooks/useUser";
 import Video from "@/src/components/mediaThumbnail/Video";
 import { useState } from "react";
+import Modal from 'react-modal';
 
 const Media = ({ media }) => {
   const user = useUser();
