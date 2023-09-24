@@ -34,7 +34,7 @@ export default function Home() {
       <div className="grid grid-cols-2 gap-20 justify-items-center">
         <CoolCard name="Log In" id="login"></CoolCard>
         <CoolCard name="Store Data" href="/form"></CoolCard>
-        <CoolCard name="Library" href="#"></CoolCard>
+        <CoolCard name="Library" href="/library"></CoolCard>
         <CoolCard name="Subscribe" href="/subscription"></CoolCard>
         <CoolCard name="Log Out" id="logout"></CoolCard>
       </div>

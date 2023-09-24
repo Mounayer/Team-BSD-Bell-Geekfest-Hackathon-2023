@@ -2,10 +2,8 @@ import Text from "@/src/components/mediaThumbnail/Text";
 import React from "react";
 import Picture from "@/src/components/mediaThumbnail/Picture";
 import useUser from "@/src/hooks/useUser";
-import Video from "@/src/components/mediaThumbnail/Video";
+import Video from "@/src/components/mediaThumbnail/video";
 import { useState } from "react";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
 
 const Media = ({ media }) => {
   const [open, setOpen] = useState(false);
@@ -30,9 +28,6 @@ const Media = ({ media }) => {
       <div className="p-2 max-h-16 bg-black bg-opacity-25 text-white opacity-90 text-center text-sm">
         <h2 className="truncate max-w-full">{media.file_name}</h2>
       </div>
-      <Modal open={open} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
-      </Modal>
     </div>
   );
 
@@ -40,7 +35,7 @@ const Media = ({ media }) => {
     if (media.data_type == "image" && blobURL) {
       return () => window.open(blobURL, "_blank");
     }
-    if(media.data_type == 'text') {
+    if (media.data_type == "text") {
       return () => onOpenModal();
     }
   }

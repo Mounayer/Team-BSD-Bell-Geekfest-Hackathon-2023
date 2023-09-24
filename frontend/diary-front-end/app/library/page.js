@@ -12,7 +12,6 @@ export default function Home() {
   const user = useUser();
 
   useEffect(() => {
-    init();
     // Wait for the DOM to be ready, then start the app
     addEventListener("DOMContentLoaded", init);
     if (user) {
