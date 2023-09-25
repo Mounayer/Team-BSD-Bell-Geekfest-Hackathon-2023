@@ -1,4 +1,4 @@
-# Team-BSD-Bell-Hackathon-2023
+# Team-BSD-Bell-Geekfest-Hackathon-2023
 
 ## Team Members
 
